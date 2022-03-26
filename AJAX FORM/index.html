@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+
+<body style="background-color:darkcyan">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-6">
+                <form onkeyup="return create()">
+                    <h1 class="text-center">REGISTRATION FORM</h1>
+                    <div class="mb-3">
+                        <label for="exampleInputfname" class="form-label">FIRST NAME</label>
+                        <input type="text" class="form-control" id="fname" placeholder="Enter your first name">
+                        <span id="fname_error" style="color: red; font-size: 15px;"></span>
+                        <span id="fname_cr" style="color: green" style=" font-size: 15px;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputfname" class="form-label">LAST NAME</label>
+                        <input type="text" class="form-control" id="lname" placeholder="Enter your last name">
+                        <span id="lname_error" style="color: red;font-size: 15px;"></span>
+                        <span id="lname_cr" style="color: green" style=" font-size: 15px;"> </span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputfname" class="form-label">EMAIL ID</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email-id">
+                        <span id="email_error" style="color: red;font-size: 15px;"></span>
+                        <span id="email_cr" style="color: green" style=" font-size: 15px;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label"> PASSWORD</label>
+                        <input type="password" class="form-control" id="pass" placeholder="Set a password" name="pass">
+                        <span id="pass_error" style="color: red;font-size: 15px;"></span>
+                        <span id="pass_cr" style="color: green" style=" font-size: 15px;"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword2" class="form-label">CONFIRM PASSWORD</label>
+                        <input type="password" class="form-control" id="passc" placeholder="Confirm your password"
+                            name="passc">
+                        <span id="passc_error" style="color: red;font-size: 15px;"></span>
+                        <span id="passc_cr" style="color: green" style=" font-size: 15px;"></span>
+                        </td>
+                    </div>
+                    <div class="mb-3">
+                        <input type="checkbox" id="cbox" name="box"  onclick="terms_changed(this)" />
+                        <!-- onchange="document.getElementById('sbtn').disabled=false;" -->
+
+                        I agree all the <a href="Teams and conditions">Teams and conditions </a>
+                    </div>
+                    <div class="mb-3 ">
+                        <button type="button" id="sbtn" disabled="true" onclick="load()"
+                            style="background-color:azure;">SUBMIT </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function load() {
+            let fname = document.getElementById("fname").value;
+            let lname = document.getElementById("lname").value;
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+            let passc = document.getElementById("passc").value;
+
+            var letters = /^[A-Z]+[^0-9][a-z]+[^0-9]{1,10}$/;
+            var emailll = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+            if (fname == '' && lname == '' && email == '' && pass == '' && passc == '') {
+                //     alert("Must filled each details");
+                document.getElementById("fname_error").innerHTML = "* this details must be filled";
+                document.getElementById("lname_error").innerHTML = "* this details must be filled";
+                document.getElementById("email_error").innerHTML = "* this details must be filled";
+                document.getElementById("pass_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+            }
+
+           else if (fname == '') {
+                document.getElementById("fname_error").innerHTML = "* this details must be filled";
+                document.getElementById("fname_cr").innerHTML = "";
+
+                document.getElementById("lname_error").innerHTML = "* this details must be filled";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "* this details must be filled";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (!letters.test(fname)) {
+                // alert("First Name is incorrect must contain alphabets only");
+                document.getElementById("fname_error").innerHTML = "First letter should be CAPITAL, alphabets are only allow, should have more than 3 letters";
+                document.getElementById("fname_cr").innerHTML = "";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = ""
+                document.getElementById("passc_cr").innerHTML = "";
+
+            }
+            // last name 
+            else if (lname == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "* this details must be filled";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "this details must be filled";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (!letters.test(lname)) {
+                // alert("Last Name is incorrect must contain alphabets only");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "First letter should be CAPITAL, alphabets are only allow, should have more than 3 letters";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            // email        
+            else if (email == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "* this details must be filled";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (!emailll.test(email)) {
+                // alert('Invalid email format please enter valid email id');
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "Invalid email format please enter valid email id";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            // password
+            else if (pass == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "* this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (document.getElementById("pass").value.length > 12) {
+                // alert("Maximum length of password is 12");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "Maximum length of password is 12";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (document.getElementById("pass").value.length < 6) {
+                // alert("Minimum length of password is 6");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "Minimum length of password is 6";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            // cn. password
+            else if (passc == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "Success";
+
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (pass != passc) {
+                // alert("Passwords not matching");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "Success";
+
+                document.getElementById("passc_error").innerHTML = "Passwords not matching";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "Success";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "Success";
+
+
+            alert("Your account has been created successfully..");
+            location.reload();
+        }}
+        function terms_changed(termsCheckBox) {
+
+            //If the checkbox has been checked
+            if (termsCheckBox.checked) {
+                //Set the disabled property to FALSE and enable the button.
+                document.getElementById("sbtn").disabled = false;
+
+            } else {
+                //Otherwise, disable the submit button.
+                document.getElementById("sbtn").disabled = true;
+
+            }
+
+        }
+        function create() {
+
+            let fname = document.getElementById("fname").value;
+            let lname = document.getElementById("lname").value;
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+            let passc = document.getElementById("passc").value;
+
+            var letters = /^[A-Z]+[^0-9][a-z]+[^0-9]{1,10}$/;
+            var emailll = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+           
+            if (fname == '') {
+                document.getElementById("fname_error").innerHTML = "* this details must be filled";
+                document.getElementById("fname_cr").innerHTML = "";
+
+                document.getElementById("lname_error").innerHTML = "* this details must be filled";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "* this details must be filled";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "* this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (!letters.test(fname)) {
+                // alert("First Name is incorrect must contain alphabets only");
+                document.getElementById("fname_error").innerHTML = "First letter should be CAPITAL, alphabets are only allow, should have more than 3 letters";
+                document.getElementById("fname_cr").innerHTML = "";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = ""
+                document.getElementById("passc_cr").innerHTML = "";
+
+            }
+            // last name 
+            else if (lname == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "* this details must be filled";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "* this details must be filled";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "* this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (!letters.test(lname)) {
+                // alert("Last Name is incorrect must contain alphabets only");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "First letter should be CAPITAL, alphabets are only allow, should have more than 3 letters";
+                document.getElementById("lname_cr").innerHTML = "";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            // email        
+            else if (email == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "* this details must be filled";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "* this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (!emailll.test(email)) {
+                // alert('Invalid email format please enter valid email id');
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "Invalid email format please enter valid email id";
+                document.getElementById("email_cr").innerHTML = "";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            // password
+            else if (pass == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "* this details must be filled";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (document.getElementById("pass").value.length > 12) {
+                // alert("Maximum length of password is 12");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "Maximum length of password is 12";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (document.getElementById("pass").value.length < 6) {
+                // alert("Minimum length of password is 6");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "Minimum length of password is 6";
+                document.getElementById("pass_cr").innerHTML = "";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            // cn. password
+            else if (passc == '') {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "Success";
+
+                document.getElementById("passc_error").innerHTML = "* this details must be filled";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else if (pass != passc) {
+                // alert("Passwords not matching");
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "Success";
+
+                document.getElementById("passc_error").innerHTML = "Passwords not matching";
+                document.getElementById("passc_cr").innerHTML = "";
+            }
+            else {
+                document.getElementById("fname_error").innerHTML = "";
+                document.getElementById("fname_cr").innerHTML = "Success";
+
+                document.getElementById("lname_error").innerHTML = "";
+                document.getElementById("lname_cr").innerHTML = "Success";
+
+                document.getElementById("email_error").innerHTML = "";
+                document.getElementById("email_cr").innerHTML = "Success";
+
+                document.getElementById("pass_error").innerHTML = "";
+                document.getElementById("pass_cr").innerHTML = "Success";
+
+                document.getElementById("passc_error").innerHTML = "";
+                document.getElementById("passc_cr").innerHTML = "Success";
+
+
+                // load();
+
+                // alert("Your account has been created successfully..");
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>
